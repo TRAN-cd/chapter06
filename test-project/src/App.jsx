@@ -119,4 +119,6 @@ function App() {
 }
 
 // コメントtest
+// 課題1用コメント
+// 課題1用コメント2
 export default App
