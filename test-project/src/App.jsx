@@ -118,6 +118,4 @@ function App() {
   )
 }
 
-// テストコメント
-
 export default App
