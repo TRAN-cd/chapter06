@@ -118,4 +118,5 @@ function App() {
   )
 }
 
+// コメントtest
 export default App
