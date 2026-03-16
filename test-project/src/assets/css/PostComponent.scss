@@ -1,0 +1,81 @@
+.inner {
+  padding: 10px;
+}
+
+h1 {
+  text-align: left;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.postBox {
+  display: flex;
+  gap: 10px;
+  padding-bottom: 10px;
+
+  @media only screen and (max-width: 640px) {
+    flex-direction: column;
+  }
+
+  .postImg {
+    max-width: 50%;
+    width: 100%;
+
+    @media only screen and (max-width: 640px) {
+      max-width: 100%;
+    }
+
+    img {
+      width: 100%;
+      vertical-align: bottom;
+    }
+  }
+
+  .postTextBox {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+    text-align: left;
+
+    @media only screen and (max-width: 640px) {
+      width: 100%;
+    }
+
+    & > div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      ul {
+        display: flex;
+        gap: 10px;
+        padding: 0;
+        margin: 0;
+
+        li {
+          list-style: none;
+          background-color: #ddd;
+          padding: 5px 10px;
+          border-radius: 50px;
+        }
+      }
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .txt {
+      font-size: 16px;
+    }
+  }
+
+  & + .postBox {
+    padding-top: 10px;
+
+    border-top: 1px solid #ccc;
+  }
+}
