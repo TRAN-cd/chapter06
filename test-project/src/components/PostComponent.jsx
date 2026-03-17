@@ -1,8 +1,6 @@
 import '../assets/css/PostComponent.css';
-import { useId } from 'react';
 
 export default function PostComponent({src}){    
-  const id = useId();
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     
