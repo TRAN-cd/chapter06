@@ -30,7 +30,7 @@ export default function PostComponent({src}){
               </ul>
             </div>
             <h2>{elem.title}</h2>
-            <p className={styles.txt}>{elem.content}</p>
+            <p className={styles.txt} dangerouslySetInnerHTML={{ __html: elem.content }} />
           </div>
         </div>
       ))}
