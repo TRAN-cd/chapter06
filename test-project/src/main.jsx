@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import Archive from './components/Archive';
+import Archive from './components/Archive/Archive';
 
 
 createRoot(document.getElementById('root')).render(

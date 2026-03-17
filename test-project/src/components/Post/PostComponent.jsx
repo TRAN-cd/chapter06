@@ -1,4 +1,4 @@
-import '../assets/css/PostComponent.css';
+import styles from './PostComponent.module.css';
 
 export default function PostComponent({src}){    
   const formatDate = (dateString) => {
@@ -13,16 +13,16 @@ export default function PostComponent({src}){
 
   return (
     <>
-    <div className='inner'>
+    <div className={styles.inner}>
       <h1>記事一覧</h1>
       {src.map((elem, index) => (
-        <div className='postBox' key={index}>
-          <div className='postImg'>
+        <div className={styles.postBox} key={index}>
+          <div className={styles.postImg}>
             <img src={elem.thumbnailUrl} alt="" />
           </div>
-          <div className='postTextBox'>
+          <div className={styles.postTextBox}>
             <div>
-              <p className='date'>{formatDate(elem.createdAt)}</p>
+              <p className={styles.date}>{formatDate(elem.createdAt)}</p>
               <ul>
                 {elem.categories.map((cat, i) => (
                   <li key={i}>{cat}</li>
@@ -30,7 +30,7 @@ export default function PostComponent({src}){
               </ul>
             </div>
             <h2>{elem.title}</h2>
-            <p className='txt'>{elem.content}</p>
+            <p className={styles.txt}>{elem.content}</p>
           </div>
         </div>
       ))}
