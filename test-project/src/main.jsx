@@ -1,10 +1,9 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import Archive from './components/Archive/Archive';
-
+import App from './App'
 
 createRoot(document.getElementById('root')).render(
   <>
-    <Archive />
+    <App />
   </>
 )
