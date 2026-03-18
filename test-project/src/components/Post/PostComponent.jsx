@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './PostComponent.module.css';
 
 export default function PostComponent({src}){    
@@ -16,7 +17,7 @@ export default function PostComponent({src}){
     <div className={styles.inner}>
       <h1>記事一覧</h1>
       {src.map((elem, index) => (
-        <div className={styles.postBox} key={index}>
+        <Link to={`/post/${elem.id}`} className={styles.postBox} key={index} id={elem.id}>
           <div className={styles.postImg}>
             <img src={elem.thumbnailUrl} alt="" />
           </div>
@@ -32,7 +33,7 @@ export default function PostComponent({src}){
             <h2>{elem.title}</h2>
             <p className={styles.txt} dangerouslySetInnerHTML={{ __html: elem.content }} />
           </div>
-        </div>
+        </Link>
       ))}
       </div>
     </>
