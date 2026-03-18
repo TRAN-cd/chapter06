@@ -14,8 +14,18 @@ export default function Post({src}){
   };
 
   const { id } = useParams();
-  const hitPostId = id - 1;
-  console.log(hitPostId);
+  const hitPost = src.find(post => post.id === Number(id));
+
+  if (!hitPost) {
+    return (
+      <>
+        <Header />
+        <div className={styles.inner}>
+          <p>記事が見つかりませんでした。</p>
+        </div>
+      </>
+    )
+  }
 
   return (
     <>
@@ -23,19 +33,19 @@ export default function Post({src}){
       <div className={styles.inner}>
         <div className={styles.postBox}>
           <div className={styles.postImg}>
-            <img src={src[hitPostId].thumbnailUrl} alt="" />
+            <img src={hitPost.thumbnailUrl} alt="" />
           </div>
           <div className={styles.postTextBox}>
             <div>
-              <p className={styles.date}>{formatDate(src[hitPostId].createdAt)}</p>
+              <p className={styles.date}>{formatDate(hitPost.createdAt)}</p>
               <ul>
-                {src[hitPostId].categories.map((cat, i) => (
+                {hitPost.categories.map((cat, i) => (
                   <li key={i}>{cat}</li>
                 ))}
               </ul>
             </div>
-            <h2>{src[hitPostId].title}</h2>
-            <p className={styles.txt} dangerouslySetInnerHTML={{ __html: src[hitPostId].content }} />
+            <h2>{hitPost.title}</h2>
+            <p className={styles.txt} dangerouslySetInnerHTML={{ __html: hitPost.content }} />
           </div>
         </div>
       </div>
