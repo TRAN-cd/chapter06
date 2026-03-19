@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 
 export default function Post(){
-  const [posts, setPosts] = useState([]);
+  const [post, setPosts] = useState(null);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -27,9 +27,9 @@ export default function Post(){
     }
   
     fetcher();
-  }, []);
+  }, [id]);
 
-  if (!posts) {
+  if (!post) {
     return (
       <>
         <Header />
@@ -40,9 +40,12 @@ export default function Post(){
     )
   }
 
-  if ( posts.length === 0) {
+  if ( post === null) {
     return (
-      <p>記事を読み込み中です...</p>
+      <>
+        <Header />
+        <p>記事を読み込み中です...</p>
+      </>
     )
   };
 
@@ -52,19 +55,19 @@ export default function Post(){
       <div className={styles.inner}>
         <div className={styles.postBox}>
           <div className={styles.postImg}>
-            <img src={posts.thumbnailUrl} alt="" />
+            <img src={post.thumbnailUrl} alt="" />
           </div>
           <div className={styles.postTextBox}>
             <div>
-              <p className={styles.date}>{formatDate(posts.createdAt)}</p>
+              <p className={styles.date}>{formatDate(post.createdAt)}</p>
               <ul>
-                {posts.categories.map((cat, i) => (
+                {post.categories.map((cat, i) => (
                   <li key={i}>{cat}</li>
                 ))}
               </ul>
             </div>
-            <h2>{posts.title}</h2>
-            <p className={styles.txt} dangerouslySetInnerHTML={{ __html: posts.content }} />
+            <h2>{post.title}</h2>
+            <p className={styles.txt} dangerouslySetInnerHTML={{ __html: post.content }} />
           </div>
         </div>
       </div>
