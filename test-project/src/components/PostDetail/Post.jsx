@@ -34,20 +34,21 @@ export default function Post(){
       <>
         <Header />
         <div className={styles.inner}>
-          <p>記事が見つかりませんでした。</p>
+          <p>記事を読み込み中です...</p>
         </div>
       </>
     )
   }
 
-  if ( post === null) {
-    return (
-      <>
-        <Header />
-        <p>記事を読み込み中です...</p>
-      </>
-    )
-  };
+  // 早期リターンで以下が実行されることはないので削除
+  // if ( post === null) {
+  //   return (
+  //     <>
+  //       <Header />
+  //       <p>記事を読み込み中です...</p>
+  //     </>
+  //   )
+  // };
 
   return (
     <>
