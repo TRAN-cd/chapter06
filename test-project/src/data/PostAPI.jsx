@@ -1,20 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import styles from './PostComponent.module.css';
+import styles from '../components/Post/PostComponent.module.css';
 
-export default function PostComponent(){
+export default function PostAPI(){
   const [posts, setPosts] = useState([]);
   
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    
-    return new Intl.DateTimeFormat('ja-JP', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }).format(date);
-  };
-
   useEffect(() => {
     const fetcher = async () => {
       const response = await fetch("https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/posts");
@@ -29,6 +19,16 @@ export default function PostComponent(){
     return (
       <p>記事を読み込み中です...</p>
     )
+  };
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    
+    return new Intl.DateTimeFormat('ja-JP', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }).format(date);
   };
 
   return (

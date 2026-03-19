@@ -1,8 +1,12 @@
 import Header from '../Header/Header';
 import styles from './Post.module.css';
 import { useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
 
-export default function Post({src}){
+
+export default function Post(){
+  const [posts, setPosts] = useState([]);
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     
@@ -14,9 +18,18 @@ export default function Post({src}){
   };
 
   const { id } = useParams();
-  const hitPost = src.find(post => post.id === Number(id));
 
-  if (!hitPost) {
+  useEffect(() => {
+    const fetcher = async () => {
+      const response = await fetch(`https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/posts/${id}`);
+      const data = await response.json();
+      setPosts(data.post);
+    }
+  
+    fetcher();
+  }, []);
+
+  if (!posts) {
     return (
       <>
         <Header />
@@ -27,25 +40,31 @@ export default function Post({src}){
     )
   }
 
+  if ( posts.length === 0) {
+    return (
+      <p>記事を読み込み中です...</p>
+    )
+  };
+
   return (
     <>
       <Header />
       <div className={styles.inner}>
         <div className={styles.postBox}>
           <div className={styles.postImg}>
-            <img src={hitPost.thumbnailUrl} alt="" />
+            <img src={posts.thumbnailUrl} alt="" />
           </div>
           <div className={styles.postTextBox}>
             <div>
-              <p className={styles.date}>{formatDate(hitPost.createdAt)}</p>
+              <p className={styles.date}>{formatDate(posts.createdAt)}</p>
               <ul>
-                {hitPost.categories.map((cat, i) => (
+                {posts.categories.map((cat, i) => (
                   <li key={i}>{cat}</li>
                 ))}
               </ul>
             </div>
-            <h2>{hitPost.title}</h2>
-            <p className={styles.txt} dangerouslySetInnerHTML={{ __html: hitPost.content }} />
+            <h2>{posts.title}</h2>
+            <p className={styles.txt} dangerouslySetInnerHTML={{ __html: posts.content }} />
           </div>
         </div>
       </div>
