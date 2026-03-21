@@ -1,0 +1,79 @@
+.inner {
+  padding: 10px;
+  width: 90%;
+  margin: 0 auto;
+
+  @media only screen and (max-width: 640px) {
+    max-width: 90%;
+  }
+}
+
+h1 {
+  margin-bottom: 40px;
+}
+
+form {
+  .form {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    label {
+      max-width: 170px;
+      width: 100%;
+      font-weight: 600;
+    }
+
+    .formBox {
+      max-width: calc(100% - 170%);
+      width: 100%;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 16px;
+      border: 1px solid #d1d5dc;
+      border-radius: 5px;
+    }
+
+    & + .form {
+      margin-top: 20px;
+    }
+  }
+
+  .btnBox {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+
+    .submitBtn {
+      color: #fff;
+      background-color: #000;
+      font-weight: 700;
+      font-size: 16px;
+      border-radius: 5px;
+      border: transparent;
+      padding: 5px 15px;
+      cursor: pointer;
+    }
+
+    .clearBtn {
+      background-color: #ddd;
+      font-weight: 700;
+      font-size: 16px;
+      border-radius: 5px;
+      border: transparent;
+      padding: 5px 15px;
+      cursor: pointer;
+
+    }
+  }
+
+  .error {
+    color: red;
+  }
+}
