@@ -1,4 +1,3 @@
-import Header from '../Header/Header';
 import styles from './Post.module.css';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
@@ -52,7 +51,6 @@ export default function Post(){
 
   return (
     <>
-      <Header />
       <div className={styles.inner}>
         <div className={styles.postBox}>
           <div className={styles.postImg}>

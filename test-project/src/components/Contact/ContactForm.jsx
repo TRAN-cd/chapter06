@@ -1,5 +1,4 @@
 import styles from './ContactForm.module.css';
-import Header from '../Header/Header';
 import { useState } from 'react';
 
 
@@ -80,7 +79,6 @@ export default function ContactForm(){
 
   return (
     <>
-      <Header />
       <div className={styles.inner}>
         <h1>お問い合わせフォーム</h1>
 
