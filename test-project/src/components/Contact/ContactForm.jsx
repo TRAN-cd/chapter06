@@ -15,9 +15,7 @@ export default function ContactForm(){
     });
   };
 
-  console.log(form);
-
-  const handleDelete = () => {
+  const handleReset = () => {
     setForm(defaultFormValue);
   };
 
@@ -64,7 +62,7 @@ export default function ContactForm(){
 
         if (response.ok) {
           alert('送信しました');
-          handleDelete();
+          handleReset();
         } else {
           // 意図的のcatch（送信処理エラーが起きたトクの処理）へ飛ばす
           throw new Error("サーバーエラー");
@@ -107,7 +105,7 @@ export default function ContactForm(){
 
           <div className={styles.btnBox}>
             <button type="button" className={styles.submitBtn} onClick={handleValidate} disabled={isSubmitting}>送信</button>
-            <button type="button" className={styles.clearBtn} onClick={handleDelete}>クリア</button>
+            <button type="button" className={styles.clearBtn} onClick={handleReset}>クリア</button>
           </div>
         </form>
       </div>
