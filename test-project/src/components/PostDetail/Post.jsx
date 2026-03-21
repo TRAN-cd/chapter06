@@ -1,8 +1,12 @@
 import Header from '../Header/Header';
 import styles from './Post.module.css';
 import { useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
 
-export default function Post({src}){
+
+export default function Post(){
+  const [post, setPosts] = useState(null);
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     
@@ -14,18 +18,37 @@ export default function Post({src}){
   };
 
   const { id } = useParams();
-  const hitPost = src.find(post => post.id === Number(id));
 
-  if (!hitPost) {
+  useEffect(() => {
+    const fetcher = async () => {
+      const response = await fetch(`https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/posts/${id}`);
+      const data = await response.json();
+      setPosts(data.post);
+    }
+  
+    fetcher();
+  }, [id]);
+
+  if (!post) {
     return (
       <>
         <Header />
         <div className={styles.inner}>
-          <p>記事が見つかりませんでした。</p>
+          <p>記事を読み込み中です...</p>
         </div>
       </>
     )
   }
+
+  // 早期リターンで以下が実行されることはないので削除
+  // if ( post === null) {
+  //   return (
+  //     <>
+  //       <Header />
+  //       <p>記事を読み込み中です...</p>
+  //     </>
+  //   )
+  // };
 
   return (
     <>
@@ -33,19 +56,19 @@ export default function Post({src}){
       <div className={styles.inner}>
         <div className={styles.postBox}>
           <div className={styles.postImg}>
-            <img src={hitPost.thumbnailUrl} alt="" />
+            <img src={post.thumbnailUrl} alt="" />
           </div>
           <div className={styles.postTextBox}>
             <div>
-              <p className={styles.date}>{formatDate(hitPost.createdAt)}</p>
+              <p className={styles.date}>{formatDate(post.createdAt)}</p>
               <ul>
-                {hitPost.categories.map((cat, i) => (
+                {post.categories.map((cat, i) => (
                   <li key={i}>{cat}</li>
                 ))}
               </ul>
             </div>
-            <h2>{hitPost.title}</h2>
-            <p className={styles.txt} dangerouslySetInnerHTML={{ __html: hitPost.content }} />
+            <h2>{post.title}</h2>
+            <p className={styles.txt} dangerouslySetInnerHTML={{ __html: post.content }} />
           </div>
         </div>
       </div>
